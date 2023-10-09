@@ -1,0 +1,16 @@
+HEADER    STRUCTURAL PROTEIN
+USER  MOD reduce.3.3.160602 H: found=0, std=0, add=2794, rem=0, adj=77
+HEADER    FOR WHATIF                        26-APR-56   GERT
+COMPND    D
+CRYST1 1000.000 1000.000 1000.000  90.00  90.00  90.00 P 1           0
+REMARK  0 PDB file renumbered with the WHAT IF option RENUMB.
+USER  MOD -----------------------------------------------------------------
+USER  MOD scores for adjustable sidechains, with "set" totals for H,N and Q
+USER  MOD "o" means original, "f" means flipped, "180deg" is methyl default
+USER  MOD "!" flags a clash with an overlap of 0.40A or greater
+USER  MOD flip categories: "K"=keep, "C"=clashes, "X"=uncertain, "F"=flip
+USER  MOD -----------------------------------------------------------------
+ATOM      1  C   LYS A   1       0.00    0.00   -0.6354 1.00  0.00           C              
+ATOM      2  O   LYS A   1       0.00    0.00    0.4783 1.00  0.00           O    
+TER  
+END
