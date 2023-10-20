@@ -1,0 +1,9 @@
+HEADER    STRUCTURAL PROTEIN
+CRYST1 1000.000 1000.000 1000.000  90.00  90.00  90.00 P 1           0
+REMARK  0 PDB file renumbered with the WHAT IF option RENUMB.
+USER  MOD -----------------------------------------------------------------
+ATOM      1  H   LYS A   1       0.0     0.0     0.366  1.00 75.52           H 
+TER       2
+ATOM      3  H   ASN A   2       0.0     0.0    -0.366  1.00 49.57           H 
+TER       4
+END
