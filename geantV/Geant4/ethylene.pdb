@@ -1,0 +1,11 @@
+HEADER    ETHYLENE
+SOURCE    MODYFYED BY:  ETHYLENE WAVE FUNCTIONS IN THE SCF APPROXIMATION
+AUTHOR    P. RAJAGOPAL, EN AMSTRONGS
+ATOM      1  C   LYS A   1      -0.668   0.000   0.000  1.00  0.00           C              
+ATOM      2  C   LYS A   1       0.668   0.000   0.000  1.00  0.00           C      
+ATOM      3  H   LYS A   1      -1.243  -0.936   0.000  1.00  0.00           H    
+ATOM      4  H   LYS A   1      -1.243   0.936   0.000  1.00  0.00           H    
+ATOM      5  H   LYS A   1       1.243  -0.936   0.000  1.00  0.00           H    
+ATOM      6  H   LYS A   1       1.243   0.936   0.000  1.00  0.00           H 
+TER  
+END
