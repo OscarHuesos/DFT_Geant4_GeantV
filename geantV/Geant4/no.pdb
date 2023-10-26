@@ -1,0 +1,9 @@
+HEADER    NO
+ATOM      1  N   LYS A   1      -0.075   0.000   0.608  0.00  0.00           N   
+ATOM      2  O   LYS A   1       0.020   0.000  -0.605  0.00  0.00           O  
+TER 
+CONECT    1    2
+CONECT    2    1
+END
+
+
