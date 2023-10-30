@@ -244,10 +244,10 @@ ox_sol.pdb
 n_sol.pdb
 P_sol.pdb
 S_sol.pdb
-H_solo.pdb
+#H_solo.pdb
 nitrogen_mol.pdb
 oxygen.pdb
-cho_pyridine.pdb
+#cho_pyridine.pdb
 #1plx_model_uno.pdb
 #1plx_model_uno_sin_h.pdb
 )
