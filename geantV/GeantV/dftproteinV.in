@@ -1,0 +1,29 @@
+
+/control/execute vis.mac
+
+/run/initialize
+
+/tracking/verbose 0
+
+/PDB4DNA/det/loadPDB h2.pdb
+#/PDB4DNA/det/loadPDB h2O.pdb
+/PDB4DNA/det/buildBoundingV
+/PDB4DNA/det/drawAtoms
+/PDB4DNA/det/drawNucleotides
+/PDB4DNA/det/drawResidues
+/PDB4DNA/det/drawAtomsWithBounding
+/PDB4DNA/det/drawNucleotidesWithBounding
+/PDB4DNA/det/drawResiduesWithBounding
+/PDB4DNA/det/Energy_analysis
+
+/PDB4DNA/event/setEnergyThres 8.22 eV #default value: 8.22 eV
+/PDB4DNA/event/setDistanceThres 10    #default value: 10
+
+/gun/particle e-
+/gun/energy 100 keV
+
+/run/initialize
+
+/run/printProgress 10
+
+/run/beamOn 10
