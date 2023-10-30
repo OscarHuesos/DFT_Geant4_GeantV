@@ -219,7 +219,7 @@ ethane.pdb
 glu.pdb
 glutamine.pdb
 histidine_neut.pdb
-histidine_nmas.pdb
+#histidine_nmas.pdb
 isoleucine.pdb
 leucine.pdb
 methionine.pdb
@@ -238,12 +238,12 @@ ox_sol.pdb
 n_sol.pdb
 P_sol.pdb
 S_sol.pdb
-H_solo.pdb
+#H_solo.pdb
 nitrogen_mol.pdb
 oxygen.pdb
-cho_pyridine.pdb
-1plx_model_uno.pdb
-1plx_model_uno_sin_h.pdb
+#cho_pyridine.pdb
+#1plx_model_uno.pdb
+#1plx_model_uno_sin_h.pdb
 )
 
 foreach(_script ${EXAMPLEpdb4dna_SCRIPTS})
