@@ -1,0 +1,9 @@
+HEADER    STRUCTURAL PROTEIN NO2
+ATOM      1  N   LYS A   1       0.000  -0.424   0.000  0.00  0.00           N   
+ATOM      2  O1  LYS A   1      -1.055   0.185   0.000  0.00  0.00           O   
+ATOM      3  O2  LYS A   1       1.055   0.185   0.000  0.00  0.00           O 
+CONECT    1    2    3
+CONECT    2    1
+CONECT    3    1
+TER
+END

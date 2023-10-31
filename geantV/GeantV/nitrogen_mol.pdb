@@ -1,0 +1,12 @@
+HEADER    STRUCTURAL N2
+REMARK  0 PDB file renumbered with the WHAT IF option RENUMB.
+USER  MOD -----------------------------------------------------------------
+USER  MOD scores for adjustable sidechains, with "set" totals for H,N and Q
+USER  MOD "o" means original, "f" means flipped, "180deg" is methyl default
+USER  MOD "!" flags a clash with an overlap of 0.40A or greater
+USER  MOD flip categories: "K"=keep, "C"=clashes, "X"=uncertain, "F"=flip
+USER  MOD -----------------------------------------------------------------
+ATOM      1  N   LYS A   1      -2.655   0.361   0.312  1.00  0.00           N              
+ATOM      2  N   LYS A   1      -1.462   0.361   0.312c 1.00  0.00           N    
+TER  
+END

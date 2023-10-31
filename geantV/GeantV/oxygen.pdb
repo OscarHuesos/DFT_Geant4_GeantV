@@ -1,0 +1,5 @@
+HEADER    OXYGEN
+ATOM      1  O   LYS A   1       0.00    0.00   -0.501  1.00  0.00           O             
+ATOM      2  O   LYS A   1       0.00    0.00    0.501  1.00  0.00           O    
+TER  
+END
