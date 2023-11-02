@@ -51,8 +51,34 @@ make
 make install
 ```
 
+### Google test
+```sh
+git clone https://github.com/google/googletest.git
+cd googletest
+mkdir build
+mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/googletest/install \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
+-DCMAKE_BUILD_TYPE=RELEASE /home/choscar/geantv/googletest/
+make
+sudo make install
+```
 
-
+### Google Benckmark
+```sh
+git clone https://github.com/google/benchmark.git
+cd benchmark/
+mkdir build
+mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/benchmark/install \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
+-DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release \
+/home/choscar/geantv/benchmark/
+make
+make install
+```
 
 
 ### HEPMC/3
@@ -68,39 +94,53 @@ mkdir install
 
 ### VecCore
 ```sh
-git clone https://gitlab.cern.ch/VecGeom/VecCore.git
-cd VecCore/
-git tag -l
-mkdir build
-mkdir install
-cd build
+
 ```
 
 ### VecMath
+```sh
 
+```
 
 
 
 ### ROOT 6.14
+```sh
+
+```
+
+
 
 ### Geant4
+```sh
+
+```
 
 
 
-### Google test
 
-
-### Google Benckmark
 
 
 ### VecGeom
 
 VecGeom 00.05.01
 
+
+```sh
+
+```
+
 ### GeantV
 -- USE_TBB OFF  : TBB disabled
 git clone https://gitlab.cern.ch/GeantV/geant.git
 download: cms2018.gdml y agregar a data
+
+
+
+```sh
+
+```
+
 
 ### Build Options 
 
