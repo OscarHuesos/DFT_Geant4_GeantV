@@ -265,22 +265,23 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 
 |Option|Description=ON|API|
 |------|--------------|---|
-|WITH_GEANT4|Build with Geant4 examples.|GeantV|
-|BUILD_REAL_PHYSICS_TESTS|Enable tests.|GeantV|
-|USE_ROOT|Build with ROOT support.|GeantV|
-|USE_NUMA|Enable NUMA-aware, requires hwloc.|GeantV|
-|ROOT|Build with ROOT support.|VecCore|
-|DBACKEND=Vc|Build with Vc Backend options.|VecCore|
-|DGEANT4_ROOT||
+|WITH_GEANT4|Build with Geant4 examples|GeantV|
+|BUILD_REAL_PHYSICS_TESTS|Enable tests|GeantV|
+|USE_ROOT|Build with ROOT support|GeantV|
+|USE_NUMA|Enable NUMA-aware, requires hwloc|GeantV|
+|ROOT|Build with ROOT support|VecCore|
+|BACKEND=Vc|Build with Vc Backend options|VecCore|
+|ROOT|Build with ROOT support|VecCoreLib|
+|BACKEND=Vc|Build with Vc Backend options|VecCoreLib|
+|GEANT4_USE_OPENGL_X11|OpenGL support|Geant4|
+|GEANT4_ROOT|Build with ROOT support|Geant4|
+|GEANT4_USE_GDML|Enable GDML|Geant4|
+|GEANT4_INSTALL_DATA|Enable database|Geant4|
+|GEANT4_USE_QT|Build with QT support|Geant4|
+|VECGEOM_BACKEND=Vc|Build with Vc Backend options|VecGeom|
+|VECGEOM_ROOT|Build with ROOT support|VecGeom|
 
 
-
-
-
-|VECGEOM_BACKEND|scalar|Vector backend API to be used|
-|VECGEOM_BUILTIN_VECCORE|OFF|Build VecCore and its dependencies from source|
-|VECGEOM_CUDA_VOLUME_SPECIALIZATION|OFF|Use specialized volumes for CUDA|
-|VECGEOM_DISTANCE_DEBUG|OFF|Enable comparison of calculated distances againt ROOT/Geant4 behind the scenes|
 
 
 ### Benckmarking 
