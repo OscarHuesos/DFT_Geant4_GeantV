@@ -98,12 +98,6 @@ source thisroot.sh en install bin
 
 
 
-
-
-
-
-
-
 ### HEPMC/3
 ```sh
 git clone https://gitlab.cern.ch/hepmc/HepMC3.git
@@ -111,18 +105,51 @@ cd HepMC3/
 git checkout -b 3.0.0 3.0.0
 mkdir build
 mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/HepMC3/install \
+-DCMAKE_PREFIX_PATH=/home/choscar/geantv/root/install  \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/HepMC3/
+make
+make install
 ```
 
 
 
 ### VecCore
 ```sh
-
+git clone https://gitlab.cern.ch/VecGeom/VecCore.git
+cd VecCore/
+git tag -l
+mkdir build
+mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/VecCore/install \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
+-DCMAKE_PREFIX_PATH=/home/choscar/geantv/root/install  \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DROOT=ON -DBACKEND=Vc  /home/choscar/geantv/VecCore
+make 
+make install
 ```
 
 ### VecMath
 ```sh
-
+git clone https://github.com/root-project/vecmath.git
+cd vecmath/
+mkdir build
+mkdir install
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/vecmath/install  \
+-DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore  \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/vecmath
+make
+make install
 ```
 
 
