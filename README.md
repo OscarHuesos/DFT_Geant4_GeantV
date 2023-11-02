@@ -27,6 +27,13 @@ The table below shows the available CMake options for VecGeom that may be used t
 |VECGEOM_DISTANCE_DEBUG|OFF|Enable comparison of calculated distances againt ROOT/Geant4 behind the scenes|
 
 ## HEPMC/3:
+```sh
+git clone https://gitlab.cern.ch/hepmc/HepMC3.git
+cd HepMC3/
+git checkout -b 3.0.0 3.0.0
+mkdir build
+mkdir install
+```
 
 ## Vc
 
