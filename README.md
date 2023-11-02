@@ -4,7 +4,9 @@ Implementation of the DFT-LDA and DFT-GGA in the Geant4 and GeantV frameworks. T
 
 # Requeriments
 The implementation requires the same dependencies that the GeantV project. Please, visit :  https://gitlab.cern.ch/GeantV/geant
--[gcc] >= gcc-9 g++-9
+
+
+-[GCC] >= gcc-9 g++-9
 
   - GCC >= 8
     - Clang >= 10
