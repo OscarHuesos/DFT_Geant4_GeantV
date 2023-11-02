@@ -16,9 +16,29 @@ The implementation requires the same dependencies that the GeantV project. Pleas
   
 - [Eigen3] >= 3.3
 
+- [Xerces] >= 3.2.3
+
 ## Build and Install
 
 The table below shows the available CMake options for VecGeom that may be used to customize the build:
+
+### UMESIMD
+```sh
+git clone https://github.com/edanor/umesimd.git
+cd umesimd/
+mkdir install
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/umesimd/install \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 \
+/home/choscar/geantv/umesimd/
+make
+make install
+```
+
+
+
+
 
 
 ### HEPMC/3
@@ -30,6 +50,8 @@ mkdir build
 mkdir install
 ```
 
+
+
 ### VecCore
 ```sh
 git clone https://gitlab.cern.ch/VecGeom/VecCore.git
@@ -39,6 +61,12 @@ mkdir build
 mkdir install
 cd build
 ```
+
+### VecMath
+
+
+
+
 ### Vc
 
 ```sh
@@ -61,6 +89,7 @@ $ cmake --build . --target install
 
 ### VecGeom
 
+VecGeom 00.05.01
 
 ### GeantV
 -- USE_TBB OFF  : TBB disabled
@@ -71,10 +100,14 @@ download: cms2018.gdml y agregar a data
 
 |Option|Description=ON|API|
 |------|--------------|---|
-|WITH_GEANT4| Build with Geant4 examples.|GeantV|
-|BUILD_REAL_PHYSICS_TESTS | Enable tests.|GeantV|
-|USE_ROOT| Build with ROOT support.|GeantV|
-|DUSE_NUMA|Enable NUMA-aware, requires hwloc.|GeantV|
+|WITH_GEANT4|Build with Geant4 examples.|GeantV|
+|BUILD_REAL_PHYSICS_TESTS|Enable tests.|GeantV|
+|USE_ROOT|Build with ROOT support.|GeantV|
+|USE_NUMA|Enable NUMA-aware, requires hwloc.|GeantV|
+|ROOT|Build with ROOT support.|VecCore|
+|DBACKEND=Vc|Build with Vc Backend options.|VecCore|
+
+
 
 
 
