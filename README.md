@@ -238,7 +238,26 @@ download: cms2018.gdml y agregar a data
 
 
 ```sh
-
+git clone https://gitlab.cern.ch/GeantV/geant.git
+download: cms2018.gdml y agregar a data
+cd geant
+mkdir build
+mkdir install
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DGeant4_DIR=/home/choscar/geantv/geant4_10_07_p04/install/lib/Geant4-10.7.4  \
+-DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore   \
+-DVecMath_DIR=/home/choscar/geantv/vecmath/install/lib/cmake/VecMath   \
+-DVecCoreLib_DIR=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install/lib/cmake/VecCoreLib    \
+-DVecGeom_DIR=/home/choscar/geantv/vecgeom_viejo-main/install/lib/cmake/VecGeom   \
+-DHepMC_DIR=/home/choscar/geantv/HepMC3/install/share/HepMC/cmake  \
+-DCMAKE_PREFIX_PATH=/home/choscar/geantv/eigen-3.4.0/install/share/eigen3/cmake  \
+-DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/geant
 ```
 
 
@@ -266,5 +285,32 @@ download: cms2018.gdml y agregar a data
 
 ### Benckmarking 
 
+```sh
+cd /home/choscar/geantv/geant/build/
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DGeant4_DIR=/home/choscar/geantv/geant4_10_07_p04/install/lib/Geant4-10.7.4  \
+-DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore   \
+-DVecMath_DIR=/home/choscar/geantv/vecmath/install/lib/cmake/VecMath   \
+-DVecCoreLib_DIR=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install/lib/cmake/VecCoreLib    \
+-DVecGeom_DIR=/home/choscar/geantv/vecgeom_viejo-main/install/lib/cmake/VecGeom   \
+-DHepMC_DIR=/home/choscar/geantv/HepMC3/install/share/HepMC/cmake  \
+-DCMAKE_PREFIX_PATH=/home/choscar/geantv/eigen-3.4.0/install/share/eigen3/cmake  \
+-DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/geant
+make
+make install
+```
 
 
+
+
+source /home/choscar/geantv/geant4_10_07_p04/install/bin/geant4.sh
+source /home/choscar/geantv/root/install/bin/thisroot.sh
+
+
+./dftprotein4
+./dftproteinV
