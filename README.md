@@ -10,8 +10,6 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 
 - [GCC] >= gcc-9 g++-9
 
-- [Clang] >= 10
-
 - [CMake] >=  3.8.0
   
 - [Eigen3] >= 3.3
@@ -79,6 +77,31 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/benchmark/install \
 make
 make install
 ```
+### ROOT
+
+v6.14.06
+
+```sh
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/root/install  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+-DCFITSIO=ON -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON  \
+-Dgdml=ON -Ddavix=OFF -Dc++11=ON  \
+-Dtmva=ON -Droofit=ON -Dccache=ON  \
+-DTBB=OFF -Dvdt=OFF -Dbuiltin_tbb=OFF  -Dimt=OFF \
+-Dgviz=ON -DOpenSSL=ON -Doracle=OFF -Dzlib=ON  -Dmathmore=ON   \
+-Dasimage=OFF -Dbuiltin_afterimage=OFF \
+/home/choscar/geantv/root/root-6.14.06/
+make
+make install
+source thisroot.sh en install bin
+```
+
+
+
+
+
+
+
 
 
 ### HEPMC/3
@@ -104,10 +127,7 @@ mkdir install
 
 
 
-### ROOT 6.14
-```sh
 
-```
 
 
 
