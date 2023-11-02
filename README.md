@@ -64,7 +64,8 @@ $ cmake --build . --target install
 
 ### GeantV
 -- USE_TBB OFF  : TBB disabled
-
+git clone https://gitlab.cern.ch/GeantV/geant.git
+download: cms2018.gdml y agregar a data
 
 ### Build Options 
 
