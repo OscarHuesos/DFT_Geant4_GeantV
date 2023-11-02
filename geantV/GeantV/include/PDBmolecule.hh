@@ -30,65 +30,116 @@
 // J. Comput. Phys. 274 (2014) 841-882
 // The Geant4-DNA web site is available at http://geant4-dna.org
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
 
-#include "globals.hh"
-#include "G4VUserPrimaryGeneratorAction.hh"
+#include "PDBatom.hh"
+#include <new>
+#include <strstream>
+#include <fstream>
+#include <vector>
 
-class G4ParticleGun;
-class G4Event;
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
+#ifndef RESIDUE_H
+#define RESIDUE_H
+
+
+class Residue
 {
 public:
-  PrimaryGeneratorAction();
-  ~PrimaryGeneratorAction();
 
-public:
-  virtual void GeneratePrimaries(G4Event*);
+  Residue();
+  Residue(const std::string& resName,int resSeq);
+  ~Residue() {};
+
+  Residue *GetNext();
+  Atom *GetFirst();
+
+  int GetID();
+  void SetNext(Residue *);
+  void SetFirst(Atom *);
+
+  std::string fResName;       
+  int fResSeq;           
+  bool fVisible;        
+  bool fSelected;     
+  int fCenterX;
+  int fCenterY;
+  int fCenterZ;
+  int fChainN;
+  G4String fChainame;
+  int fNbAtom;       
+  std::vector<Atom *> Lista_atoms;
+
 
 private:
-  G4ParticleGun* fpParticleGun;
+  Residue *fpNext;
+  Atom *fpFirst;
 };
 
 #endif
 
 
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
+#ifndef MOLECULE_H
+#define MOLECULE_H
 
-#include "DetectorConstruction.hh"
-#include "G4VUserActionInitialization.hh"
 
-class ActionInitialization : public G4VUserActionInitialization
-{
+class Molecule{
 public:
-  ActionInitialization();
-  virtual ~ActionInitialization();
 
-  virtual void BuildForMaster() const;
-  virtual void Build() const;
+  Molecule();
+
+  Molecule(const std::string& resName,int mNum);
+
+  ~Molecule() {};
+
+
+  Molecule *GetNext();
+  Residue *GetFirst();
+
+  int GetID();
+
+  void SetNext(Molecule *);
+  void SetFirst(Residue *);
+
+  void isbool(bool t);
+  void Setvorbits(G4int orb);
+  void check_parity();
+
+  bool retstatus();
+
+void Load( const std::string& filename, int& isProtein); 
+
+  std::string fMolName;
+  int fMolNum; 
+  bool fExiste;
+  double fMinGlobZ;   
+  double fMaxGlobZ;
+  double fMinGlobX;   
+  double fMaxGlobX;
+  double fMinGlobY;   
+  double fMaxGlobY;
+
+  int fCenterX;      
+  int fCenterY;     
+  int fCenterZ; 
+  int fDistCenterMax;
+  int fNbResidue;      
+  int No_atomos_en_prot;
+  int Nresidue=0;
+  int cadena;
+
+  G4int no_orbits=0;
+  G4int no_electrons=0;
+  G4int ocupados=0;
+  G4int abiertos=0;
+  G4int No_points=0;
+
+std::vector<int>  N_atoms_per_chain;
+std::vector<int>  N_residues_per_chain;
+std::vector<Residue *> Residuos_cadena;
+
+private:
+  Molecule *fpNext;
+  Residue *fpFirst;
 };
-
 #endif
-
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
-
-#include "G4VModularPhysicsList.hh"
-
-
-class G4VPhysicsConstructor;
-
-class PhysicsList: public G4VModularPhysicsList
-{
-public:
-  PhysicsList();
-  virtual ~PhysicsList();
-};
-
-#endif
-
-
 

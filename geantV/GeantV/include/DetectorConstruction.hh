@@ -30,65 +30,73 @@
 // J. Comput. Phys. 274 (2014) 841-882
 // The Geant4-DNA web site is available at http://geant4-dna.org
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
 
+#ifndef DetectorConstruction_h
+#define DetectorConstruction_h 1
+
+#include "G4Material.hh"
+#include "G4VUserDetectorConstruction.hh"
 #include "globals.hh"
-#include "G4VUserPrimaryGeneratorAction.hh"
 
-class G4ParticleGun;
-class G4Event;
+class DetectorMessenger;
+class G4LogicalVolume;
+class G4VPhysicalVolume;
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
-{
+#include "PDBbarycenter.hh"
+#include "dft.hh"
+
+
+class DetectorConstruction : public G4VUserDetectorConstruction{
 public:
-  PrimaryGeneratorAction();
-  ~PrimaryGeneratorAction();
+  DetectorConstruction();
+  virtual ~DetectorConstruction();
 
-public:
-  virtual void GeneratePrimaries(G4Event*);
+  virtual G4VPhysicalVolume* Construct();
 
 private:
-  G4ParticleGun* fpParticleGun;
-};
 
-#endif
+  G4String fPdbFileName;
+  unsigned short int fChosenOption;
+  unsigned short int fPdbFileStatus;
 
+  PDBlib fPDBlib;
+  Molecule *fpMoleculeList;
+  Barycenter *fpBarycenterList;
+  G4Material *fpDefaultMaterial;
+  G4Material *fpWaterMaterial;
+  Molecule Mol;
 
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
+  void   ConstructMaterials();
+  void   CheckMaterials();
+  G4VPhysicalVolume* ConstructWorld();
+  G4VPhysicalVolume* DefineVolumes(Molecule& fpMoleculeList, unsigned short int option, int& typ);
+  Molecule Charge_molecule(G4String filename, int& isM);
+  void AtomisticView(G4LogicalVolume*,Molecule , double atomSizeFactor);
+  void BarycenterView(G4LogicalVolume* ,Barycenter *);
+  void ResiduesView(G4LogicalVolume* ,Barycenter *);
+  void DrawBoundingVolume(G4LogicalVolume* ,Molecule );
 
-#include "DetectorConstruction.hh"
-#include "G4VUserActionInitialization.hh"
+  DetectorMessenger* fpMessenger; 
+  G4bool  fCheckOverlaps; 
 
-class ActionInitialization : public G4VUserActionInitialization
-{
 public:
-  ActionInitialization();
-  virtual ~ActionInitialization();
 
-  virtual void BuildForMaster() const;
-  virtual void Build() const;
+  Barycenter *GetBarycenterList();
+  PDBlib GetPDBlib();
+  Molecule *GetMoleculeList();
+
+  void LoadPDBfile(G4String fileName);
+  void DrawAtoms_();
+  void DrawNucleotides_();
+  void DrawResidues_();
+  void BuildBoundingVolume();
+  void DrawAtomsWithBounding_();
+  void DrawNucleotidesWithBounding_();
+  void DrawResiduesWithBounding_();
+  G4double Molecule_energy_Analysis(Molecule&  fpMol);
+
+
 };
 
-#endif
-
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
-
-#include "G4VModularPhysicsList.hh"
-
-
-class G4VPhysicsConstructor;
-
-class PhysicsList: public G4VModularPhysicsList
-{
-public:
-  PhysicsList();
-  virtual ~PhysicsList();
-};
 
 #endif
-
-
-

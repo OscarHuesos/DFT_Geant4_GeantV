@@ -27,68 +27,63 @@
 // Any report or published results obtained using the Geant4-DNA software
 // shall cite the following Geant4-DNA collaboration publication:
 // Med. Phys. 37 (2010) 4692-4708
-// J. Comput. Phys. 274 (2014) 841-882
+// Delage et al. PDB4DNA: implementation of DNA geometry from the Protein Data
+//                  Bank (PDB) description for Geant4-DNA Monte-Carlo
+//                  simulations (submitted to Comput. Phys. Commun.)
 // The Geant4-DNA web site is available at http://geant4-dna.org
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
+
+#ifndef RunAction_h
+#define RunAction_h 1
 
 #include "globals.hh"
-#include "G4VUserPrimaryGeneratorAction.hh"
+#include "G4UserRunAction.hh"
+#include <vector>
 
-class G4ParticleGun;
-class G4Event;
+class G4Run;
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
+class RunAction : public G4UserRunAction
 {
 public:
-  PrimaryGeneratorAction();
-  ~PrimaryGeneratorAction();
+  RunAction();
+  virtual ~RunAction();
 
-public:
-  virtual void GeneratePrimaries(G4Event*);
-
-private:
-  G4ParticleGun* fpParticleGun;
+  virtual void BeginOfRunAction(const G4Run*);
+  virtual void EndOfRunAction(const G4Run*);
 };
 
 #endif
 
+#ifndef RUNINITOBSERVER_HH_
+#define RUNINITOBSERVER_HH_
 
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
 
-#include "DetectorConstruction.hh"
-#include "G4VUserActionInitialization.hh"
-
-class ActionInitialization : public G4VUserActionInitialization
+class RunInitObserver
 {
 public:
-  ActionInitialization();
-  virtual ~ActionInitialization();
+  RunInitObserver();
+  virtual
+  ~RunInitObserver();
 
-  virtual void BuildForMaster() const;
-  virtual void Build() const;
+  virtual void Initialize() = 0;
 };
 
-#endif
-
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
-
-#include "G4VModularPhysicsList.hh"
 
 
-class G4VPhysicsConstructor;
-
-class PhysicsList: public G4VModularPhysicsList
+class RunInitManager
 {
 public:
-  PhysicsList();
-  virtual ~PhysicsList();
+  static RunInitManager* Instance();
+  void Initialize();
+
+protected:
+  friend class RunInitObserver;
+  RunInitManager();
+  ~RunInitManager();
+  void Insert(RunInitObserver*);
+
+  std::vector<RunInitObserver*> fObservers;
+  static G4ThreadLocal RunInitManager* fgInstance;
 };
 
-#endif
-
-
-
+#endif 

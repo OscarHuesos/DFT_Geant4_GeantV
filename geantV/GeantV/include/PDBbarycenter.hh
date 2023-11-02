@@ -22,73 +22,98 @@
 // * use  in  resulting  scientific  publications,  and indicate your *
 // * acceptance of all terms of the Geant4 Software license.          *
 // ********************************************************************
-//
 // This example is provided by the Geant4-DNA collaboration
 // Any report or published results obtained using the Geant4-DNA software
 // shall cite the following Geant4-DNA collaboration publication:
 // Med. Phys. 37 (2010) 4692-4708
-// J. Comput. Phys. 274 (2014) 841-882
+// Delage et al. PDB4DNA: implementation of DNA geometry from the Protein Data
+//                  Bank (PDB) description for Geant4-DNA Monte-Carlo
+//                  simulations (submitted to Comput. Phys. Commun.)
 // The Geant4-DNA web site is available at http://geant4-dna.org
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
 
-#include "globals.hh"
-#include "G4VUserPrimaryGeneratorAction.hh"
+#ifndef BARY_H
+#define BARY_H
 
-class G4ParticleGun;
-class G4Event;
-
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
-{
+class Barycenter{
 public:
-  PrimaryGeneratorAction();
-  ~PrimaryGeneratorAction();
 
-public:
-  virtual void GeneratePrimaries(G4Event*);
+  Barycenter();
+
+  Barycenter(int bNum,double x,double y, double z,
+      double Bx,double By, double Bz,
+      double Sx,double Sy, double Sz, 
+      double Px,double Py, double Pz);
+
+  ~Barycenter() {};
+
+  Barycenter *GetNext();
+  int GetID();
+
+  void SetNext(Barycenter *);
+
+  void SetDistance(int i, double);
+
+  double GetDistance(int i);
+
+  void SetRadius(double );
+
+  double GetRadius();
+  int fBaryNum;
+  double fDistanceTab[33];
+  double fRadius;
+  double fCenterX;           
+  double fCenterY;            
+  double fCenterZ;           
+
+  double fCenterBaseX;        
+  double fCenterBaseY;      
+  double fCenterBaseZ;       
+
+  double fCenterSugarX;  
+  double fCenterSugarY;   
+  double fCenterSugarZ;  
+
+  double fCenterPhosphateX;   
+  double fCenterPhosphateY; 
+  double fCenterPhosphateZ;  
 
 private:
-  G4ParticleGun* fpParticleGun;
+Barycenter *fpNext;   
 };
-
 #endif
 
+#ifndef pdblibread_h
+#define pdblibread 1
 
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
+#include "PDBmolecule.hh"
 
-#include "DetectorConstruction.hh"
-#include "G4VUserActionInitialization.hh"
-
-class ActionInitialization : public G4VUserActionInitialization
-{
+class PDBlib{
 public:
-  ActionInitialization();
-  virtual ~ActionInitialization();
 
-  virtual void BuildForMaster() const;
-  virtual void Build() const;
+PDBlib();
+
+~PDBlib() {};
+
+Barycenter* ComputeNucleotideBarycenters(Molecule moleculeListTemp);
+Barycenter* ComputeProteinBarycenters(Molecule moleculeListTemp);
+
+  void ComputeBoundingVolumeParams(Molecule moleculeListTemp,
+      double &dX,double &dY,double &dZ, double &tX,double &tY,double &tZ);     
+
+
+void ComputeNbNucleotidsPerStrand(Molecule  moleculeListTemp);
+void ComputeProteinPerStrand(Molecule  moleculeListTemp);
+
+  unsigned short int ComputeMatchEdepDNA(Barycenter *,Molecule *,
+      double x, double y,double z, int &numStrand, int &numNucleotid, int &codeResidue);
+
+private:
+
+  double DistanceTwo3Dpoints(double xA,double xB, double yA,double yB,
+      double zA,double zB);
+
+  int fNbNucleotidsPerStrand;
 };
 
 #endif
-
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
-
-#include "G4VModularPhysicsList.hh"
-
-
-class G4VPhysicsConstructor;
-
-class PhysicsList: public G4VModularPhysicsList
-{
-public:
-  PhysicsList();
-  virtual ~PhysicsList();
-};
-
-#endif
-
-
-

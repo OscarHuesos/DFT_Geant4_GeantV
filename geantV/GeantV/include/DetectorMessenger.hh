@@ -27,68 +27,49 @@
 // Any report or published results obtained using the Geant4-DNA software
 // shall cite the following Geant4-DNA collaboration publication:
 // Med. Phys. 37 (2010) 4692-4708
-// J. Comput. Phys. 274 (2014) 841-882
+// Delage et al. PDB4DNA: implementation of DNA geometry from the Protein Data
+//                  Bank (PDB) description for Geant4-DNA Monte-Carlo
+//                  simulations (submitted to Comput. Phys. Commun.)
 // The Geant4-DNA web site is available at http://geant4-dna.org
 
-#ifndef PrimaryGeneratorAction_h
-#define PrimaryGeneratorAction_h 1
+
+#ifndef DetectorMessenger_h
+#define DetectorMessenger_h 1
 
 #include "globals.hh"
-#include "G4VUserPrimaryGeneratorAction.hh"
+#include "G4UImessenger.hh"
 
-class G4ParticleGun;
-class G4Event;
+class DetectorConstruction;
+class G4UIdirectory;
+class G4UIcmdWithAString;
+class G4UIcmdWithoutParameter;
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
-{
+
+
+class DetectorMessenger: public G4UImessenger {
 public:
-  PrimaryGeneratorAction();
-  ~PrimaryGeneratorAction();
+  DetectorMessenger(DetectorConstruction*);
+  virtual ~DetectorMessenger();
 
-public:
-  virtual void GeneratePrimaries(G4Event*);
+  virtual void SetNewValue(G4UIcommand*, G4String);
 
 private:
-  G4ParticleGun* fpParticleGun;
+  DetectorConstruction*  fpDetectorConstruction;
+
+  G4UIdirectory*                fpDirectory;
+  G4UIdirectory*                fpDetDirectory;
+  G4UIcmdWithAString*           fpLoadPdbCmd;
+  G4UIcmdWithoutParameter*      fpBuildBoundingV;
+
+  G4UIcmdWithoutParameter*      fpDrawAtoms;
+  G4UIcmdWithoutParameter*      fpDrawNucleotides;
+  G4UIcmdWithoutParameter*      fpDrawResidues;
+  G4UIcmdWithoutParameter*      fpDrawAtomsWithBounding;
+  G4UIcmdWithoutParameter*      fpDrawNucleotidesWithBounding;
+  G4UIcmdWithoutParameter*      fpDrawResiduesWithBounding;
+  G4UIcmdWithoutParameter*      fpEnergy_analysis;
+
 };
 
 #endif
-
-
-#ifndef ActionInitialization_h
-#define ActionInitialization_h 1
-
-#include "DetectorConstruction.hh"
-#include "G4VUserActionInitialization.hh"
-
-class ActionInitialization : public G4VUserActionInitialization
-{
-public:
-  ActionInitialization();
-  virtual ~ActionInitialization();
-
-  virtual void BuildForMaster() const;
-  virtual void Build() const;
-};
-
-#endif
-
-#ifndef PhysicsList_h
-#define PhysicsList_h 1
-
-#include "G4VModularPhysicsList.hh"
-
-
-class G4VPhysicsConstructor;
-
-class PhysicsList: public G4VModularPhysicsList
-{
-public:
-  PhysicsList();
-  virtual ~PhysicsList();
-};
-
-#endif
-
-
 
