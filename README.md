@@ -10,9 +10,9 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 
 - [Clang] >= 10
 
-- [CMake] >=  3.7.0
+- [CMake] >=  3.8.0
   
-- [Eigen]
+- [Eigen3] >= 3.3
 
 # Build and Install
 
@@ -26,7 +26,7 @@ The table below shows the available CMake options for VecGeom that may be used t
 |VECGEOM_CUDA_VOLUME_SPECIALIZATION|OFF|Use specialized volumes for CUDA|
 |VECGEOM_DISTANCE_DEBUG|OFF|Enable comparison of calculated distances againt ROOT/Geant4 behind the scenes|
 
-
+## HEPMC/3:
 
 ## Vc
 
@@ -36,7 +36,7 @@ $ cmake ..
 $ cmake --build .
 $ cmake --build . --target install
 ```
-
+## ROOT 6.14
 
 ## Geant4
 
