@@ -14,6 +14,13 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 
 # Build and Install
 
+```sh
+$ mkdir build && cd build
+$ cmake ..
+$ cmake --build .
+$ cmake --build . --target install
+```
+
 
 ## Geant4
 
