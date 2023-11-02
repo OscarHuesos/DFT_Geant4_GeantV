@@ -17,14 +17,9 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 ## Build and Install
 
 ### Build Options
+
 The table below shows the available CMake options for VecGeom that may be used to customize the build:
 
-|Option|Default|Description|
-|------|:-----:|-----------|
-|VECGEOM_BACKEND|scalar|Vector backend API to be used|
-|VECGEOM_BUILTIN_VECCORE|OFF|Build VecCore and its dependencies from source|
-|VECGEOM_CUDA_VOLUME_SPECIALIZATION|OFF|Use specialized volumes for CUDA|
-|VECGEOM_DISTANCE_DEBUG|OFF|Enable comparison of calculated distances againt ROOT/Geant4 behind the scenes|
 
 ### HEPMC/3
 ```sh
@@ -44,9 +39,6 @@ mkdir build
 mkdir install
 cd build
 ```
-
-
-
 ### Vc
 
 ```sh
@@ -66,7 +58,23 @@ $ cmake --build . --target install
 
 ### Google Benckmark
 
-# Mode of use
+## Mode of use
+
+|Option|Description=ON|API|
+|------|--------------|---|
+|WITH_GEANT4| Build with Geant4 examples.|GeantV|
+|BUILD_REAL_PHYSICS_TESTS | Enable tests.|GeantV|
+|USE_ROOT| Build with ROOT support.|GeantV|
+|DUSE_NUMA|Enable NUMA-aware, requires hwloc.|GeantV|
+
+
+
+
+|VECGEOM_BACKEND|scalar|Vector backend API to be used|
+|VECGEOM_BUILTIN_VECCORE|OFF|Build VecCore and its dependencies from source|
+|VECGEOM_CUDA_VOLUME_SPECIALIZATION|OFF|Use specialized volumes for CUDA|
+|VECGEOM_DISTANCE_DEBUG|OFF|Enable comparison of calculated distances againt ROOT/Geant4 behind the scenes|
+
 
 
 
