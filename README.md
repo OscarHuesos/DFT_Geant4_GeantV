@@ -115,8 +115,6 @@ make
 make install
 ```
 
-
-
 ### VecCore
 ```sh
 git clone https://gitlab.cern.ch/VecGeom/VecCore.git
@@ -153,14 +151,58 @@ make install
 ```
 
 
+### VecCoreLib
 
+```sh
+unzip VecCoreLib-japost-ProxyVecRng-join-v2-Print.zip
+cd VecCoreLib-japost-ProxyVecRng-join-v2-Print/
+mkdir build
+mkdir install
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install  \
+-DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore  \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+-DROOT=ON -DBACKEND=Vc /home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print
+make
+make install
+```
 
 
 
 
 ### Geant4
-```sh
 
+
+unzip geant4_10_07_p04.zip
+cd geant4_10_07_p04
+mkdir build
+mkdir install
+mkdir data
+
+mv G4NDL.4.6.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
+mv G4EMLOW.7.13.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
+
+
+```sh
+cd /home/choscar/geantv/geant4_10_07_p04/data
+tar zxvf G4NDL.4.6.tar.gz
+tar zxvf G4EMLOW.7.13.tar.gz
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant4_10_07_p04/install  \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DXERCESC_ROOT_DIR=/home/choscar/geantv/xerces-c-3.2.3/install  \
+-DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_SYSTEM_ZLIB=ON  \
+-DGEANT4_ROOT=ON -DROOT=ON -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_QT=ON \
+-DGEANT4_INSTALL_DATADIR=/home/choscar/geantv/geant4_10_07_p04/data \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/geant4_10_07_p04
+make -j4
+make install
+en install bin:
+. geant4.sh
+o
+source geant4.sh
 ```
 
 
@@ -172,9 +214,20 @@ make install
 
 VecGeom 00.05.01
 
-
 ```sh
-
+unzip vecgeom_viejo-main.zip
+cd cd vecgeom_viejo-main/
+mkdir build
+mkdir install
+cd build/
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/vecgeom_viejo-main/install  \
+-DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+-DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+-DBACKEND=Vc -DROOT=ON -DVECGEOM_ROOT=ON -DVECGEOM_BACKEND=Vc   \
+/home/choscar/geantv/vecgeom_viejo-main
+make 
+make install
 ```
 
 ### GeantV
