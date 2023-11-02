@@ -36,6 +36,20 @@ make
 make install
 ```
 
+### Vc
+```sh
+git clone https://github.com/VcDevel/Vc.git
+cd Vc/
+git checkout -b 1.3.3 1.3.3
+mkdir build
+mkdir install
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/Vc/install \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/Vc/
+make
+make install
+```
 
 
 
@@ -67,14 +81,6 @@ cd build
 
 
 
-### Vc
-
-```sh
-$ mkdir build && cd build
-$ cmake ..
-$ cmake --build .
-$ cmake --build . --target install
-```
 ### ROOT 6.14
 
 ### Geant4
