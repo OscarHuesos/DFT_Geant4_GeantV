@@ -271,7 +271,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 |USE_NUMA|Enable NUMA-aware, requires hwloc.|GeantV|
 |ROOT|Build with ROOT support.|VecCore|
 |DBACKEND=Vc|Build with Vc Backend options.|VecCore|
-
+|DGEANT4_ROOT||
 
 
 
@@ -284,6 +284,8 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 
 
 ### Benckmarking 
+
+
 
 ```sh
 cd /home/choscar/geantv/geant/build/
@@ -305,6 +307,8 @@ make
 make install
 ```
 
+
+The molecule is set on the DetectorConstruction.cc file.
 
 
 
