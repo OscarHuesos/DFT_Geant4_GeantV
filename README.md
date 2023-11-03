@@ -93,8 +93,8 @@ source thisroot.sh
 Extra dependencies may be required. If they are not needed, turn the flags off:
 
 ```sh
--Dtmva=ON -DTBB=OFF -Dbuiltin_tbb=OFF -Droofit=ON -Dzlib=ON -DCFITSIO=ON
--DOpenSSL=ON -Dimt=OFF -Doracle=OFF -Dasimage=OFF -Dbuiltin_afterimage=OFF 
+-Dtmva=ON -DTBB=OFF -Dbuiltin_tbb=OFF -Droofit=ON -Dzlib=ON -DCFITSIO=ON     \
+-DOpenSSL=ON -Dimt=OFF -Doracle=OFF -Dasimage=OFF -Dbuiltin_afterimage=OFF   \
 -Dvdt=OFF -Ddavix=OFF -Dgviz=ON
 ```
 
@@ -124,7 +124,7 @@ mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
   -DROOT=ON -DBACKEND=Vc \
-  -DVc_DIR =  "path to dir with /Vc/.../.cmake files of Vc"
+  -DVc_DIR =  "path to dir with /Vc/.../.cmake files of Vc"   \
   -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make 
 make install
@@ -139,8 +139,8 @@ cd vecmath/
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-  -DVecCore_DIR =  "path to dir with /VecCore/.../.cmake files of VecCore"
-  -DVc_DIR = "path to dir with /Vc/.../.cmake files of Vc"
+  -DVecCore_DIR =  "path to dir with /VecCore/.../.cmake files of VecCore"  \
+  -DVc_DIR = "path to dir with /Vc/.../.cmake files of Vc"                  \
   -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make
 make install
@@ -170,45 +170,33 @@ mkdir install
 mkdir data &&
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-
-
-
-
-
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant4_10_07_p04/install  \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DXERCESC_ROOT_DIR=/home/choscar/geantv/xerces-c-3.2.3/install  \
--DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_SYSTEM_ZLIB=ON  \
--DGEANT4_ROOT=ON -DROOT=ON -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_QT=ON \
--DGEANT4_INSTALL_DATADIR=/home/choscar/geantv/geant4_10_07_p04/data \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
-/home/choscar/geantv/geant4_10_07_p04
+  -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_GDML=ON -DGEANT4_USE_SYSTEM_ZLIB=ON  \  
+  -DGEANT4_ROOT=ON -DROOT=ON -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_QT=ON        \
+  -DROOT_DIR =  "path to dir with .../.cmake files of ROOT"  \
+  -DGEANT4_INSTALL_DATADIR =  "path to the dir designated for the databases"  \
+  -DXERCESC_ROOT_DIR = "path to dir for the Xerces installation"  
 make -j4
 make install
-en install bin:
-. geant4.sh
-o
-source geant4.sh
 ```
 
-
-
-mv G4NDL.4.6.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
-mv G4EMLOW.7.13.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
-
-
-
+To execute:
+```sh
+cd install/bin
+. geant4.sh  /  source geant4.sh
+```
 
 ### VecGeom
-
-VecGeom 00.05.01
+Library for vectorized geometry used in HEP. Tested in the version VecGeom 00.05.01
 
 ```sh
-unzip vecgeom_viejo-main.zip
-cd cd vecgeom_viejo-main/
-mkdir build
+cd vecgeom
 mkdir install
-cd build/
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+
+
+
+
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/vecgeom_viejo-main/install  \
 -DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
 -DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
@@ -274,7 +262,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 |GEANT4_USE_OPENGL_X11|OpenGL support|Geant4|
 |GEANT4_ROOT|Build with ROOT support|Geant4|
 |GEANT4_USE_GDML|Enable GDML|Geant4|
-|GEANT4_INSTALL_DATA|Enable database|Geant4|
+|GEANT4_INSTALL_DATA|Enable databases from Geant4|Geant4|
 |GEANT4_USE_QT|Build with QT support|Geant4|
 |VECGEOM_BACKEND=Vc|Build with Vc Backend options|VecGeom|
 |VECGEOM_ROOT|Build with ROOT support|VecGeom|
