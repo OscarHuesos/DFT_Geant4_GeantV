@@ -15,11 +15,9 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 - [Xerces] >= 3.2.3
 
 ## Build and Install
-
 The project can be installed manually, building from soruce each independent module:
 
 ### UMESIMD
-
 Expression template for vectorization library.
 
 ```sh
@@ -47,7 +45,6 @@ make install
 ```
 
 ### Google test
-
 Testing library for the C++.
 
 ```sh
@@ -61,7 +58,6 @@ sudo make install
 ```
 
 ### Google Benckmark
-
 Library to benchmark codesnippets.
 
 ```sh
@@ -78,35 +74,59 @@ make install
 Open-source data analysis framework. Tested in the version v6.14.06.
 
 ```sh
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/root/install  \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
--DCFITSIO=ON -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON  \
--Dgdml=ON -Ddavix=OFF -Dc++11=ON  \
--Dtmva=ON -Droofit=ON -Dccache=ON  \
--DTBB=OFF -Dvdt=OFF -Dbuiltin_tbb=OFF  -Dimt=OFF \
--Dgviz=ON -DOpenSSL=ON -Doracle=OFF -Dzlib=ON  -Dmathmore=ON   \
--Dasimage=OFF -Dbuiltin_afterimage=OFF \
-/home/choscar/geantv/root/root-6.14.06/
+cd root
+mkdir install
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON -Dgdml=ON \
+  -Dc++11=ON  -Dccache=ON  -Dmathmore=ON   \
 make
 make install
-source thisroot.sh en install bin
+```
+
+Then: ... 
+```sh
+cd install/bin
+source thisroot.sh
 ```
 
 
+ 
+Extra dependencies could be needed. If arent necessary, these flags can be swiched off:
+-Dtmva=ON
+-DTBB=OFF  -Dbuiltin_tbb=OFF   
+-Droofit=ON
+-Dzlib=ON
+ -DCFITSIO=ON
+-DOpenSSL=ON
+ -Dimt=OFF 
+  -Doracle=OFF
+-Dasimage=OFF -Dbuiltin_afterimage=OFF \
+ -Dvdt=OFF
+ -Ddavix=OFF
+ -Dgviz=ON
 
-Extra dependencies could be needed ...
-
-
+"Additional dependencies may be required. If they are not needed, you can disable these flags."
 
 
 ### HEPMC/3
+C++ event record for HEP.
+
 ```sh
 git clone https://gitlab.cern.ch/hepmc/HepMC3.git
 cd HepMC3/
 git checkout -b 3.0.0 3.0.0
-mkdir build
 mkdir install
-cd build
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+
+
+
+
+
+
+
+
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/HepMC3/install \
 -DCMAKE_PREFIX_PATH=/home/choscar/geantv/root/install  \
 -DROOT_DIR=/home/choscar/geantv/root/install/cmake \
@@ -272,6 +292,10 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 
 |Option|Description=ON|API|
 |------|--------------|---|
+|OPENGL|Enable OpenGL support|ROOT|
+|Pythia8|Build with Pythia8 tool|ROOT|  
+
+
 |WITH_GEANT4|Build with Geant4 examples|GeantV|
 |BUILD_REAL_PHYSICS_TESTS|Enable tests|GeantV|
 |USE_ROOT|Build with ROOT support|GeantV|
