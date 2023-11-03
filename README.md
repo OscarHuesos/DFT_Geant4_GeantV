@@ -123,45 +123,39 @@ git tag -l
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-  -DROOT=ON -DBACKEND=Vc 
-
-
-
-
-
-
--DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
-
+  -DROOT=ON -DBACKEND=Vc \
+  -DVc_DIR =  "path to dir with /Vc/.../.cmake files of Vc"
+  -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make 
 make install
 ```
 
 ### VecMath
+Library of vectorized math utilities based on VecCore.
+
 ```sh
 git clone https://github.com/root-project/vecmath.git
 cd vecmath/
-mkdir build
 mkdir install
-cd build/
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/vecmath/install  \
--DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore  \
--DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
-/home/choscar/geantv/vecmath
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DVecCore_DIR =  "path to dir with /VecCore/.../.cmake files of VecCore"
+  -DVc_DIR = "path to dir with /Vc/.../.cmake files of Vc"
+  -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make
 make install
 ```
 
-
 ### VecCoreLib
+Additional libraries for VecCore.
 
 ```sh
-unzip VecCoreLib-japost-ProxyVecRng-join-v2-Print.zip
-cd VecCoreLib-japost-ProxyVecRng-join-v2-Print/
-mkdir build
+git clone https://gitlab.cern.ch/GeantV/VecCoreLib.git
 mkdir install
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+
+
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install  \
 -DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore  \
 -DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
