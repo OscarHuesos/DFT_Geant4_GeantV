@@ -269,4 +269,4 @@ source "path to Geant4 dir/install/bin/geant4.sh"
 source "path to ROOT dir/install/bin/thisroot.sh"
 ./dftprotein(4/V)
 ```
-The Benckmarking works either for both scalar and vector mode. GUI using .mac files are available.
+The Benckmarking works in both scalar and vector mode. GUI using .mac files are available.
