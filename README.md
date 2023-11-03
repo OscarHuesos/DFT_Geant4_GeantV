@@ -193,40 +193,38 @@ cd vecgeom
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-
-
-
-
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/vecgeom_viejo-main/install  \
--DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
--DBACKEND=Vc -DROOT=ON -DVECGEOM_ROOT=ON -DVECGEOM_BACKEND=Vc   \
-/home/choscar/geantv/vecgeom_viejo-main
+  -DBACKEND=Vc -DROOT=ON -DVECGEOM_ROOT=ON -DVECGEOM_BACKEND=Vc   \
+  -DVc_DIR = "path to dir with /Vc/.../.cmake files of Vc"                 \
+  -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make 
 make install
 ```
 
-### GeantV
+### GeantV with the DFT
+Vectorized vesion of Geant4 (under testing). Download  cms2018.gdml and add to the data folder manually. Then:
 
-If TBB is selected, switch to ON:
 ```sh
--- USE_TBB =  OFF  
+git clone https://gitlab.cern.ch/GeantV/geant.git
+cd geant
+mkdir install
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
+  -DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
+  -DGeant4_DIR=/home/choscar/geantv/geant4_10_07_p04/install/lib/Geant4-10.7.4  \
+  -DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore   \
+  -DVecMath_DIR=/home/choscar/geantv/vecmath/install/lib/cmake/VecMath   \
+  -DVecCoreLib_DIR=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install/lib/cmake/VecCoreLib    \
+  -DVecGeom_DIR=/home/choscar/geantv/vecgeom_viejo-main/install/lib/cmake/VecGeom   \
+  -DHepMC_DIR=/home/choscar/geantv/HepMC3/install/share/HepMC/cmake  \
+  -DCMAKE_PREFIX_PATH=/home/choscar/geantv/eigen-3.4.0/install/share/eigen3/cmake  \
+-DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
+-DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
+/home/choscar/geantv/geant
 ```
 
-
-git clone https://gitlab.cern.ch/GeantV/geant.git
-download: cms2018.gdml y agregar a data
-
-
-
 ```sh
-git clone https://gitlab.cern.ch/GeantV/geant.git
-download: cms2018.gdml y agregar a data
-cd geant
-mkdir build
-mkdir install
-cd build/
+cd /home/choscar/geantv/geant/build/
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
 -DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
@@ -241,6 +239,23 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 -DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
 -DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
 /home/choscar/geantv/geant
+make
+make install
+```
+
+
+
+
+
+
+
+
+
+
+
+If TBB is selected, switch to ON:
+```sh
+-- USE_TBB =  OFF  
 ```
 
 
@@ -272,27 +287,6 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 
 ### Benckmarking 
 
-
-
-```sh
-cd /home/choscar/geantv/geant/build/
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
--DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DGeant4_DIR=/home/choscar/geantv/geant4_10_07_p04/install/lib/Geant4-10.7.4  \
--DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore   \
--DVecMath_DIR=/home/choscar/geantv/vecmath/install/lib/cmake/VecMath   \
--DVecCoreLib_DIR=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install/lib/cmake/VecCoreLib    \
--DVecGeom_DIR=/home/choscar/geantv/vecgeom_viejo-main/install/lib/cmake/VecGeom   \
--DHepMC_DIR=/home/choscar/geantv/HepMC3/install/share/HepMC/cmake  \
--DCMAKE_PREFIX_PATH=/home/choscar/geantv/eigen-3.4.0/install/share/eigen3/cmake  \
--DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
-/home/choscar/geantv/geant
-make
-make install
-```
 
 
 The molecule is set on the DetectorConstruction.cc file. Either the folder of Geant4 or GeantV contains the available molecules.
