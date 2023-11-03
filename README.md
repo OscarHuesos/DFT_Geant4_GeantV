@@ -15,7 +15,7 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 - [Xerces] >= 3.2.3
 
 ## Build and Install
-The project can be installed manually, building from soruce each independent module:
+The project can be installed manually. Each module can be compiled independently from soruce.
 
 ### UMESIMD
 Expression template for vectorization library.
@@ -53,6 +53,7 @@ cd googletest
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DCMAKE_BUILD_TYPE=RELEASE
 make
 sudo make install
 ```
@@ -79,6 +80,9 @@ mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
   -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON -Dgdml=ON \
+
+
+
   -Dc++11=ON  -Dccache=ON  -Dmathmore=ON   \
 make
 make install
@@ -122,19 +126,29 @@ cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
 
 
 
+-DROOT_DIR= path to  
 
 
-
-
-
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/HepMC3/install \
--DCMAKE_PREFIX_PATH=/home/choscar/geantv/root/install  \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
-/home/choscar/geantv/HepMC3/
 make
 make install
 ```
+
+
+
+
+
+
+
+mkdir build/ && cd build/
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+	      -DVecCore_DIR="path to dir with VecCoreConfig.cmake"  #if VecCore is not installed inside prefix
+make install
+
+
+
+
+
+
 
 ### VecCore
 ```sh
@@ -294,7 +308,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 |------|--------------|---|
 |OPENGL|Enable OpenGL support|ROOT|
 |Pythia8|Build with Pythia8 tool|ROOT|  
-
+ Library (GSL) is a numerical library for C and C++
 
 |WITH_GEANT4|Build with Geant4 examples|GeantV|
 |BUILD_REAL_PHYSICS_TESTS|Enable tests|GeantV|
