@@ -84,7 +84,7 @@ make
 make install
 ```
 
-To execute:
+To source, run:
 ```sh
 cd install/bin
 source thisroot.sh
@@ -179,7 +179,7 @@ make -j4
 make install
 ```
 
-To execute:
+To source, run:
 ```sh
 cd install/bin
 . geant4.sh  /  source geant4.sh
@@ -269,4 +269,4 @@ source "path to Geant4 dir/install/bin/geant4.sh"
 source "path to ROOT dir/install/bin/thisroot.sh"
 ./dftprotein(4/V)
 ```
-The Benckmarking works either scalar or vector mode. GUI using .mac files are available.
+The Benckmarking works either for both scalar and vector mode. GUI using .mac files are available.
