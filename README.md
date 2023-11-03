@@ -47,36 +47,35 @@ make install
 ```
 
 ### Google test
+
+Testing library for the C++.
+
 ```sh
 git clone https://github.com/google/googletest.git
 cd googletest
-mkdir build
 mkdir install
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/googletest/install \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
--DCMAKE_BUILD_TYPE=RELEASE /home/choscar/geantv/googletest/
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
 make
 sudo make install
 ```
 
 ### Google Benckmark
+
+Library to benchmark codesnippets.
+
 ```sh
 git clone https://github.com/google/benchmark.git
 cd benchmark/
-mkdir build
 mkdir install
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/benchmark/install \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
--DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release \
-/home/choscar/geantv/benchmark/
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release \
 make
 make install
 ```
 ### ROOT
-
-v6.14.06
+Open-source data analysis framework. Tested in the version v6.14.06.
 
 ```sh
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/root/install  \
@@ -92,6 +91,11 @@ make
 make install
 source thisroot.sh en install bin
 ```
+
+
+
+Extra dependencies could be needed ...
+
 
 
 
