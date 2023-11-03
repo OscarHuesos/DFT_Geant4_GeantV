@@ -67,7 +67,7 @@ cd benchmark/
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-  -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release \
+  -DBENCHMARK_DOWNLOAD_DEPENDENCIES=ON -DCMAKE_BUILD_TYPE=Release 
 make
 make install
 ```
@@ -79,39 +79,24 @@ cd root
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-  -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON -Dgdml=ON \
-
-
-
-  -Dc++11=ON  -Dccache=ON  -Dmathmore=ON   \
+  -DFFTW=0N -DGSL=ON -DOPENGL=ON -DPythia8=ON -Dgdml=ON -Dc++11=ON  -Dccache=ON  -Dmathmore=ON   
 make
 make install
 ```
 
-Then: ... 
+To execute:
 ```sh
 cd install/bin
 source thisroot.sh
 ```
 
+Extra dependencies may be required. If they are not needed, turn the flags off:
 
- 
-Extra dependencies could be needed. If arent necessary, these flags can be swiched off:
--Dtmva=ON
--DTBB=OFF  -Dbuiltin_tbb=OFF   
--Droofit=ON
--Dzlib=ON
- -DCFITSIO=ON
--DOpenSSL=ON
- -Dimt=OFF 
-  -Doracle=OFF
--Dasimage=OFF -Dbuiltin_afterimage=OFF \
- -Dvdt=OFF
- -Ddavix=OFF
- -Dgviz=ON
-
-"Additional dependencies may be required. If they are not needed, you can disable these flags."
-
+```sh
+-Dtmva=ON -DTBB=OFF -Dbuiltin_tbb=OFF -Droofit=ON -Dzlib=ON -DCFITSIO=ON
+-DOpenSSL=ON -Dimt=OFF -Doracle=OFF -Dasimage=OFF -Dbuiltin_afterimage=OFF 
+-Dvdt=OFF -Ddavix=OFF -Dgviz=ON
+```
 
 ### HEPMC/3
 C++ event record for HEP.
@@ -123,47 +108,31 @@ git checkout -b 3.0.0 3.0.0
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-
-
-
--DROOT_DIR= path to  
-
-
+  -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make
 make install
 ```
 
-
-
-
-
-
-
-mkdir build/ && cd build/
-cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-	      -DVecCore_DIR="path to dir with VecCoreConfig.cmake"  #if VecCore is not installed inside prefix
-make install
-
-
-
-
-
-
-
 ### VecCore
+Abstraction API for vectorization.
+
 ```sh
 git clone https://gitlab.cern.ch/VecGeom/VecCore.git
 cd VecCore/
 git tag -l
-mkdir build
 mkdir install
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/VecCore/install \
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+  -DROOT=ON -DBACKEND=Vc 
+
+
+
+
+
+
 -DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"  \
--DCMAKE_PREFIX_PATH=/home/choscar/geantv/root/install  \
 -DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DROOT=ON -DBACKEND=Vc  /home/choscar/geantv/VecCore
+
 make 
 make install
 ```
@@ -308,8 +277,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant/install  \
 |------|--------------|---|
 |OPENGL|Enable OpenGL support|ROOT|
 |Pythia8|Build with Pythia8 tool|ROOT|  
- Library (GSL) is a numerical library for C and C++
-
+|GSL|Enable GSL library|ROOT|
 |WITH_GEANT4|Build with Geant4 examples|GeantV|
 |BUILD_REAL_PHYSICS_TESTS|Enable tests|GeantV|
 |USE_ROOT|Build with ROOT support|GeantV|
