@@ -1,13 +1,12 @@
 # DFT_Geant4_GeantV
 
-Implementation of the DFT-LDA and DFT-GGA in the Geant4 and GeantV frameworks. The vectorized implementations uses VecCore API and the respective dependencies. The basis set functions are STO-3G. The files needed are .pdb extension. Minimum C++11 required.
+Implementation of the DFT-LDA and DFT-GGA in the Geant4 and GeantV frameworks. The vectorized implementations uses VecCore API and the respective dependencies. The basis set functions are STO-3G. The files needed are .pdb extension.
 
 
 ## Requeriments
 The implementation requires the same dependencies that the GeantV project. Please, visit :  https://gitlab.cern.ch/GeantV/geant
 
-
-- [GCC] >= gcc-9 g++-9
+- [GCC] <= gcc-9, g++-9
 
 - [CMake] >=  3.8.0
   
@@ -27,26 +26,22 @@ Expression template for vectorization library.
 git clone https://github.com/edanor/umesimd.git
 cd umesimd/
 mkdir install
-mkdir build
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/umesimd/install \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 \
-/home/choscar/geantv/umesimd/
+mkdir build/ && cd build/
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
 make
 make install
 ```
 
 ### Vc
+Library to explicit vectorization in C++.
+
 ```sh
 git clone https://github.com/VcDevel/Vc.git
 cd Vc/
 git checkout -b 1.3.3 1.3.3
-mkdir build
 mkdir install
-cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/Vc/install \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
-/home/choscar/geantv/Vc/
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
 make
 make install
 ```
