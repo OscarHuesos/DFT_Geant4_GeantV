@@ -218,8 +218,8 @@ cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
   -DHepMC_DIR =  "path to dir with .../.cmake files of HepMC3"        \   
   -DCMAKE_PREFIX_PATH= "path to dir for the Eigen3 installation"  \
   -DWITH_GEANT4=ON -DBUILD_REAL_PHYSICS_TESTS=ON  -DUSE_ROOT=ON -DUSE_NUMA= OFF   \
-  make
-  make install
+make
+make install
 ```
 
 If TBB is selected, switch to ON:
@@ -262,11 +262,11 @@ git clone https://gitlab.cern.ch/GeantV/geant.git
 The molecule is set on the DetectorConstruction.cc file. Either the folder of Geant4 or GeantV contains the available molecules.
 To add new molecules, it should be put in the respective folder, an agregate the respective name in the CMakeLists within the Test_SCRIPTS section.
 
+To launch the test, in "GeantV/build/dft/Geant(4/V)" folder, run:
 
-
-source /home/choscar/geantv/geant4_10_07_p04/install/bin/geant4.sh
-source /home/choscar/geantv/root/install/bin/thisroot.sh
-
-
-./dftprotein4
-./dftproteinV
+```sh
+source "path to Geant4 dir/install/bin/geant4.sh"
+source "path to ROOT dir/install/bin/thisroot.sh"
+./dftprotein(4/V)
+```
+The Benckmarking works either scalar or vector mode. GUI using .mac files are available.
