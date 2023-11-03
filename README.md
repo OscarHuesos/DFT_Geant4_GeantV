@@ -154,39 +154,27 @@ git clone https://gitlab.cern.ch/GeantV/VecCoreLib.git
 mkdir install
 mkdir build && cd build
 cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
-
-
-cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print/install  \
--DVecCore_DIR=/home/choscar/geantv/VecCore/install/lib/cmake/VecCore  \
--DVc_DIR=/home/choscar/geantv/Vc/install/lib/cmake/Vc \
--DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
--DCMAKE_C_COMPILER=gcc-9 -DCMAKE_CXX_COMPILER=g++-9 CC=gcc-9  -DCMAKE_CXX_FLAGS="-std=c++11"    \
--DROOT=ON -DBACKEND=Vc /home/choscar/geantv/VecCoreLib-japost-ProxyVecRng-join-v2-Print
+  -DROOT=ON -DBACKEND=Vc      \
+  -DVecCore_DIR = "path to dir with /VecCore/.../.cmake files of VecCore"  \
+  -DVc_DIR = "path to dir with /Vc/.../.cmake files of Vc"                 \
+  -DROOT_DIR = "path to dir with .../.cmake files of ROOT"
 make
 make install
 ```
-
-
-
-
 ### Geant4
-
-
-unzip geant4_10_07_p04.zip
-cd geant4_10_07_p04
-mkdir build
-mkdir install
-mkdir data
-
-mv G4NDL.4.6.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
-mv G4EMLOW.7.13.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
-
+Toolkit for HEP. Tested in the version 10.07.04
 
 ```sh
-cd /home/choscar/geantv/geant4_10_07_p04/data
-tar zxvf G4NDL.4.6.tar.gz
-tar zxvf G4EMLOW.7.13.tar.gz
-cd build/
+cd root
+mkdir install
+mkdir data &&
+mkdir build && cd build
+cmake ../ -DCMAKE_INSTALL_PREFIX=$PREFIX \
+
+
+
+
+
 cmake -DCMAKE_INSTALL_PREFIX=/home/choscar/geantv/geant4_10_07_p04/install  \
 -DROOT_DIR=/home/choscar/geantv/root/install/cmake  \
 -DXERCESC_ROOT_DIR=/home/choscar/geantv/xerces-c-3.2.3/install  \
@@ -204,6 +192,9 @@ source geant4.sh
 ```
 
 
+
+mv G4NDL.4.6.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
+mv G4EMLOW.7.13.tar.gz /home/choscar/geantv/geant4_10_07_p04/data
 
 
 
