@@ -1,8 +1,7 @@
 # DFT_Geant4_GeantV
 
-Implementation of the DFT-LDA and DFT-GGA in the Geant4 and GeantV frameworks. The vectorized implementations uses VecCore API and the respective dependencies. The basis set functions are STO-3G. The files needed are .pdb extension.
+Implementation of the DFT-LDA and DFT-GGA in the Geant4 and GeantV frameworks. The vectorized implementations uses VecCore API and the respective dependencies. The basis set functions are STO-3G. The files needed are .pdb extension. Minimum C++11 required.
 
-C++11
 
 ## Requeriments
 The implementation requires the same dependencies that the GeantV project. Please, visit :  https://gitlab.cern.ch/GeantV/geant
@@ -18,9 +17,12 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 
 ## Build and Install
 
-The table below shows the available CMake options for VecGeom that may be used to customize the build:
+The project can be installed manually, building from soruce each independent module:
 
 ### UMESIMD
+
+Expression template for vectorization library.
+
 ```sh
 git clone https://github.com/edanor/umesimd.git
 cd umesimd/
@@ -231,7 +233,13 @@ make install
 ```
 
 ### GeantV
--- USE_TBB OFF  : TBB disabled
+
+If TBB is selected, switch to ON:
+```sh
+-- USE_TBB =  OFF  
+```
+
+
 git clone https://gitlab.cern.ch/GeantV/geant.git
 download: cms2018.gdml y agregar a data
 
@@ -309,7 +317,8 @@ make install
 ```
 
 
-The molecule is set on the DetectorConstruction.cc file.
+The molecule is set on the DetectorConstruction.cc file. Either the folder of Geant4 or GeantV contains the available molecules.
+To add new molecules, it should be put in the respective folder, an agregate the respective name in the CMakeLists within the Test_SCRIPTS section.
 
 
 
