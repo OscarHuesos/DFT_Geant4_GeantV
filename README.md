@@ -257,10 +257,10 @@ git clone https://gitlab.cern.ch/GeantV/geant.git
 |VECGEOM_ROOT|Build with ROOT support|VecGeom|
 
 
-### Benckmarking 
-
-The molecule is set on the DetectorConstruction.cc file. Either the folder of Geant4 or GeantV contains the available molecules.
+### Benchmarking 
+Currently, the project is under benchmarking. The molecule is set on the DetectorConstruction.cc file. Either the folder of Geant4 or GeantV contains the available molecules.
 To add new molecules, it should be put in the respective folder, an agregate the respective name in the CMakeLists within the Test_SCRIPTS section.
+Choose 0 = LDA, 1 = GGA in DFT::correlation and DFT::exchange method from dft.cc to select the appropiate functional.
 
 To launch the test, in "GeantV/build/dft/Geant(4/V)" folder, run:
 
