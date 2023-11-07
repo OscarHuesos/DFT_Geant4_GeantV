@@ -410,10 +410,15 @@ break;
 }
 
 
+if(energia > Ein ){
+//printf("eeeeeeeeeeeeeeeeeeeenergia vale %f  y Ein %f \n", energia, Ein);
+}else{
+
+Ein = energia;
 D = Matriz_D(Eng.eigenvectors(), Mol.ocupados, Mol.abiertos, siz);
+}
 
 buffer.clear();
-Ein = energia;
 i++;
 }
 
