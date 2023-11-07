@@ -68,10 +68,10 @@ g =   2.0*gradp[i];
 cubr = pow(rho, 1.0/3.0) ;
 
 // con constante Slter Slat
-epsilonxLDA = (-1.0)*Slat*cubr;
+// epsilonxLDA = (-1.0)*Slat*cubr;
 
 //con cnosnte paper becke:
-//epsilonxLDA = (-1.0)*StLDA*cubr;
+epsilonxLDA = (-1.0)*StLDA*cubr;
 
 xrho = ( g ) / ( pow(rho, 4.0/3.0)  );
 sinhmenos = asinh(xrho);
@@ -114,10 +114,10 @@ Exc[i] = rho*( epsiloncGGA  +  epsilonxGGA   );
 
 ////////////////////////////////////////////////////////////s
 // con constante Slater Slat:
-depsilonxlda = (-1.0*Slat)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
+// depsilonxlda = (-1.0*Slat)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
 
 //con cnosnte paper becke:
-//depsilonxlda = (-1.0*StLDA)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
+depsilonxlda = (-1.0*StLDA)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
 
 dvdx = 6.0*beta*( xrho*devasinh + sinhmenos );
 
