@@ -58,10 +58,10 @@ GDV = 2.0*GRADV[i];
 CUBR = vecCore::math::Cbrt( R );
 
 // con constante Slter Slat
-EPXLDA  = (-1.0)*Slat*CUBR;
+//EPXLDA  = (-1.0)*Slat*CUBR;
 
 //con cnosnte paper becke:
-//EPXLDA = (-1.0)*StLDA*( CUBR  );
+EPXLDA = (-1.0)*StLDA*( CUBR  );
 
 XRHO = GDV/( CUBR*R ) ;
 SINHR = vecCore::math::ASinh( XRHO );
@@ -106,11 +106,11 @@ EXCV[i] = R*( EPCGGA  +  EPXGGA )*W[i];
 
 ////////////////////////////////////////////////////////////s
 // con constante Slater Slat:
-DEPXLDA =  (-1.0*Slat)/( 3.0*(CUBR*CUBR )  ) ;
+// DEPXLDA =  (-1.0*Slat)/( 3.0*(CUBR*CUBR )  ) ;
 
 
 //con cnosnte paper becke:
-//DEPXLDA =  (-1.0*StLDA)/( 3.0*(CUBR*CUBR )  ) ;
+DEPXLDA =  (-1.0*StLDA)/( 3.0*(CUBR*CUBR )  ) ;
 
 
 DVDX = 6.0*beta*( XRHO*DERSIN + SINHR );
@@ -215,10 +215,10 @@ g   = 2.0*Get( GRADV[i] , j );
 cubr = pow(rho, 1.0/3.0) ;
 
 // con constante Slter Slat
-epsilonxLDA = (-1.0)*Slat*cubr;
+//epsilonxLDA = (-1.0)*Slat*cubr;
 
 // con constante paper becke:
-//epsilonxLDA = (-1.0)*StLDA*cubr;
+epsilonxLDA = (-1.0)*StLDA*cubr;
 
 xrho = ( g ) / ( pow(rho, 4.0/3.0)  );
 sinhmenos = asinh(xrho);
@@ -261,10 +261,10 @@ Acumv = Acumv + exc ;
 ////////////////////////////////////////////////////////////s
 
 // con constante Slater Slat:
-depsilonxlda = (-1.0*Slat)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
+//depsilonxlda = (-1.0*Slat)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
 
 //con cnosnte paper becke:
-//depsilonxlda = (-1.0*StLDA)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
+depsilonxlda = (-1.0*StLDA)/( 3.0*(pow(rho, 2.0/3.0 ))  ) ;
 
 
 dvdx = 6.0*beta*( xrho*devasinh + sinhmenos );
