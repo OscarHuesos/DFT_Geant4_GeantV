@@ -15,7 +15,7 @@ The implementation requires the same dependencies that the GeantV project. Pleas
 - [Xerces] >= 3.2.3
 
 ## Build and Install
-The project can be installed manually. Each module can be compiled independently from soruce.
+The project can be installed manually. Each module can be compiled independently from  the source.
 
 ### UMESIMD
 Expression template for vectorization library.
